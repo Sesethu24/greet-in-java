@@ -39,7 +39,14 @@ public class Main {
             }else
                 if (command.equals("counter")){
                 System.out.println(greet.counter());
-                }
+                }else
+                    if(command.equals("help")){
+                      greet.help();
+                    }
+                else
+                    if(command.equals("clear")){
+                       greet.clear();
+                    }
             else
                 if(command.equals("exit")){
                    exit = false;
