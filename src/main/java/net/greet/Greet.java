@@ -1,26 +1,37 @@
 package net.greet;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Greet {
 
     HashMap<String, Integer> greetMap = new HashMap<>();
 
-    public void greetNames(String name, String language){
+    public void greetNames(String name, String language) {
 
-        if (!greetMap.containsKey(name)){
-            greetMap.put(name,1);
+        if (!greetMap.containsKey(name)) {
+            greetMap.put(name, 1);
+        } else if (greetMap.containsKey(name)) {
+            greetMap.put(name, greetMap.get(name) + 1);
         }
-        else if (greetMap.containsKey(name)) {
-                greetMap.put(name, greetMap.get(name + 1));
-            }
-        System.out.println(Languages.valueOf(language).getLang() + name);
+        System.out.println(Languages.valueOf(language).getLang() + name.substring(0, 1).toUpperCase() + name.substring(1).toLowerCase());
     }
-    public int counter(){
+
+    public int counter() {
         int count = greetMap.size();
-        return  count;
+        return count;
     }
-    public void help(){
+
+    public String counterFor(String name){
+        int count = 0;
+        if (greetMap.containsKey(name)){
+            count = greetMap.get(name);
+        }
+
+        return name + ": "+ count;
+    }
+
+    public void help() {
         System.out.println("\nHelp Menu:\n " +
                 "\n 1. greet followed by the name and the language the user is to be greeted in\n" +
                 "\n 2. greeted should display a list of all users that has been greeted and how many time each user has been greeted\n" +
@@ -31,15 +42,35 @@ public class Greet {
                 "\n 7. exit exits the application\n"
         );
     }
-     public void clear(){
-        greetMap.clear();
-        int count = 0;
-     }
-     
-//     public void greeted(){
-//         for (Map<>:
-//              ) {
-//
-//         }
-//     }
+
+    public void clear() {
+
+        if (greetMap.size() > 0) {
+            greetMap.clear();
+            System.out.println("successfully cleared");
+        } else
+            System.out.println("no user has been greeted yet");
+    }
+
+    public void clearForEach(String name) {
+
+        if (greetMap.get(name) > 0) {
+            int countEach = greetMap.get(name);
+            countEach--;
+            System.out.println(greetMap.put(name, countEach));
+        }
+    }
+
+    public void greeted() {
+        if (greetMap.size()> 0) {
+            for (Map.Entry<String, Integer> set :
+                    greetMap.entrySet()) {
+
+                // Printing all elements of a Map
+                System.out.println("Name : " + set.getKey() + "," + " counter : " + set.getValue());
+            }
+        }else
+            System.out.println("no user has been greeted yet");
+
+    }
 }

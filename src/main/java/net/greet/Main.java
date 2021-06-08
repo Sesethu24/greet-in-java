@@ -11,6 +11,7 @@ public class Main {
 
         Boolean exit = true;
 
+
         while(exit){
             System.out.print("Please enter your command: ");
             String names = sc.nextLine();
@@ -46,6 +47,18 @@ public class Main {
                 else
                     if(command.equals("clear")){
                        greet.clear();
+                    }
+                else
+                    if(command.equals("clearForEach")){
+                        greet.clearForEach(name);
+                    }
+                 else
+                     if (command.equals("counterFor")){
+                         System.out.println(greet.counterFor(name));
+                     }
+                else
+                    if(command.equals("greeted")){
+                        greet.greeted();
                     }
             else
                 if(command.equals("exit")){

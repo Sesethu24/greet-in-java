@@ -13,6 +13,6 @@ public enum Languages {
     }
 
     public String getLang() {
-        return lang;
+        return lang.substring(0, 1).toUpperCase() + lang.substring(1).toLowerCase();
     }
 }
